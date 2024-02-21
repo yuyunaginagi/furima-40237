@@ -1,24 +1,47 @@
-# README
+<!-- usersテーブル -->
+| Column              | Type    | Options     |
+|---------------------|---------|-------------|
+| nickname            | string  | null: false |
+| email               | string  | null: false, unique: true |
+| encrypted_password  | string  | null: false |
+| first_name_kanji    | string  | null: false |
+| last_name_kanji     | string  | null: false |
+| first_name_katakana | string  | null: false |
+| last_name_katakana  | string  | null: false |
+| year                | integer | null: false |
+| month               | integer | null: false |
+| day                 | integer | null: false |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- has_many :items
+- has_many :orders
 
-Things you may want to cover:
+<!-- itemsテーブル -->
+| Column          | Type    | Options     |
+|-----------------|---------|-------------|
+| image           | string  | null: false |
+| items_name      | string  | null: false |
+| explanation     | text    | null: false |
+| category        | string  | null: false |
+| condition       | string  | null: false |
+| delivery_charge | string  | null: false |
+| area            | string  | null: false |
+| number_of_days  | string  | null: false |
+| price           | integer | null: false |
 
-* Ruby version
+- has_one :order
+- belongs_to :user
 
-* System dependencies
+<!-- ordersテーブル -->
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
+| post_code        | integer    | null: false                    |
+| prefectures      | string     | null: false                    |
+| municipalities   | string     | null: false                    |
+| street_address   | string     | null: false                    |
+| building_name    | string     |                                |
+| telephone_number | string     | null: false                    |
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- belongs_to :user
+- belongs_to :item
