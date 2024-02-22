@@ -1,24 +1,53 @@
-# README
+<!-- usersテーブル -->
+| Column              | Type    | Options     |
+|---------------------|---------|-------------|
+| nickname            | string  | null: false |
+| email               | string  | null: false, unique: true |
+| encrypted_password  | string  | null: false |
+| first_name_kanji    | string  | null: false |
+| last_name_kanji     | string  | null: false |
+| first_name_katakana | string  | null: false |
+| last_name_katakana  | string  | null: false |
+| birth_day           | date    | null: false |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- has_many :items
+- has_many :orders
 
-Things you may want to cover:
+<!-- itemsテーブル -->
+| Column             | Type       | Options     |
+|--------------------|------------|-------------|
+| user               | references | null: false, foreign_key: true |
+| items_name         | string     | null: false |
+| explanation        | text       | null: false |
+| category_id        | integer    | null: false |
+| condition_id       | integer    | null: false |
+| delivery_charge_id | integer    | null: false |
+| prefecture_id      | integer    | null: false |
+| number_of_day_id   | integer    | null: false |
+| price              | integer    | null: false |
 
-* Ruby version
+- has_one :order
+- belongs_to :user
 
-* System dependencies
+<!-- ordersテーブル -->
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
 
-* Configuration
+- belongs_to :user
+- belongs_to :item
+- has_one :delivery
 
-* Database creation
+<!-- deliverysテーブル -->
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| order            | references | null: false, foreign_key: true |
+| post_code        | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| municipalities   | string     | null: false                    |
+| street_address   | string     | null: false                    |
+| building_name    | string     |                                |
+| telephone_number | string     | null: false                    |
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- belongs_to :order
