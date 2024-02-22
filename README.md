@@ -8,25 +8,23 @@
 | last_name_kanji     | string  | null: false |
 | first_name_katakana | string  | null: false |
 | last_name_katakana  | string  | null: false |
-| year                | integer | null: false |
-| month               | integer | null: false |
-| day                 | integer | null: false |
+| birth_day           | date    | null: false |
 
 - has_many :items
 - has_many :orders
 
 <!-- itemsテーブル -->
-| Column          | Type    | Options     |
-|-----------------|---------|-------------|
-| image           | string  | null: false |
-| items_name      | string  | null: false |
-| explanation     | text    | null: false |
-| category        | string  | null: false |
-| condition       | string  | null: false |
-| delivery_charge | string  | null: false |
-| area            | string  | null: false |
-| number_of_days  | string  | null: false |
-| price           | integer | null: false |
+| Column             | Type       | Options     |
+|--------------------|------------|-------------|
+| user               | references | null: false, foreign_key: true |
+| items_name         | string     | null: false |
+| explanation        | text       | null: false |
+| category_id        | integer    | null: false |
+| condition_id       | integer    | null: false |
+| delivery_charge_id | integer    | null: false |
+| prefecture_id      | integer    | null: false |
+| number_of_days_id  | integer    | null: false |
+| price              | integer    | null: false |
 
 - has_one :order
 - belongs_to :user
@@ -39,12 +37,14 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :delivery
 
 <!-- deliverysテーブル -->
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
-| post_code        | integer    | null: false                    |
-| prefectures      | string     | null: false                    |
+| order            | references | null: false, foreign_key: true |
+| post_code        | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
 | municipalities   | string     | null: false                    |
 | street_address   | string     | null: false                    |
 | building_name    | string     |                                |
