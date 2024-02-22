@@ -23,7 +23,7 @@
 | condition_id       | integer    | null: false |
 | delivery_charge_id | integer    | null: false |
 | prefecture_id      | integer    | null: false |
-| number_of_days_id  | integer    | null: false |
+| number_of_day_id   | integer    | null: false |
 | price              | integer    | null: false |
 
 - has_one :order
