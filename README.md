@@ -36,6 +36,13 @@
 |------------------|------------|--------------------------------|
 | user             | references | null: false, foreign_key: true |
 | item             | references | null: false, foreign_key: true |
+
+- belongs_to :user
+- belongs_to :item
+
+<!-- deliverysテーブル -->
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
 | post_code        | integer    | null: false                    |
 | prefectures      | string     | null: false                    |
 | municipalities   | string     | null: false                    |
@@ -43,5 +50,4 @@
 | building_name    | string     |                                |
 | telephone_number | string     | null: false                    |
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :order
