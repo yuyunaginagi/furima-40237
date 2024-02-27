@@ -14,17 +14,17 @@
 - has_many :orders
 
 <!-- itemsテーブル -->
-| Column             | Type       | Options     |
-|--------------------|------------|-------------|
-| user               | references | null: false, foreign_key: true |
-| items_name         | string     | null: false |
-| explanation        | text       | null: false |
-| category_id        | integer    | null: false |
-| condition_id       | integer    | null: false |
-| delivery_charge_id | integer    | null: false |
-| prefecture_id      | integer    | null: false |
-| number_of_day_id   | integer    | null: false |
-| price              | integer    | null: false |
+| Column                 | Type       | Options     |
+|------------------------|------------|-------------|
+| user                   | references | null: false, foreign_key: true        |
+| name                   | string     | null: false |
+| info                   | text       | null: false |
+| category_id            | integer    | null: false |
+| sales_status_id        | integer    | null: false |
+| shipping_fee_status_id | integer    | null: false |
+| prefecture_id          | integer    | null: false |
+| scheduled_delivery_id  | integer    | null: false |
+| price                  | integer    | null: false |
 
 - has_one :order
 - belongs_to :user
