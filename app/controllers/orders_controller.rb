@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def delivery_params
-    params.permit(:post_code, :prefecture_id, :municipalities, :street_address, :building_name, :telephone_number).merge(order_id: @order.id)
+    params.permit(:postal_code, :prefecture_id, :city, :addresses, :building, :phone_number).merge(order_id: @order.id)
   end
 
 end
