@@ -12,11 +12,11 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:price).merge(user_id: current_user.id)
+    params.require(:order).permit(:user_id, :item_id)
   end
 
   def delivery_params
-    params.require(:order).permit(:user_id, :item_id)
+    params.permit(:post_code, :prefecture_id, :municipalities, :street_address, :building_name, :telephone_number).merge(order_id: @order.id)
   end
 
 end
