@@ -39,7 +39,7 @@
 - belongs_to :item
 - has_one :delivery
 
-<!-- deliverysテーブル -->
+<!-- deliveriesテーブル -->
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
 | order            | references | null: false, foreign_key: true |
