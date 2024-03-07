@@ -8,9 +8,10 @@ class OrdersController < ApplicationController
   def create
     @order_delivery = OrderDelivery.new(order_params)
     if @order_delivery.valid?
-    @order_delivery.save
-    redirect_to root_path
+      @order_delivery.save
+      redirect_to root_path
     else
+      @items = Item.all
       render :index, status: :unprocessable_entity
     end
   end
