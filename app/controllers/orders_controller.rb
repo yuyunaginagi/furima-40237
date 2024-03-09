@@ -4,6 +4,17 @@ class OrdersController < ApplicationController
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find_by(params[:id])
     @order_delivery = OrderDelivery.new
+
+    if @item.user == current_user
+      redirect_to root_path
+      return
+    end
+
+    if @item.user != current_user && @item.sold_out?
+      redirect_to root_path
+      return
+    end
+
   end
 
   def create
@@ -17,6 +28,7 @@ class OrdersController < ApplicationController
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
+
   end
 
   private
@@ -33,6 +45,10 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def sold_out?
+    order.present?
   end
 
 end
