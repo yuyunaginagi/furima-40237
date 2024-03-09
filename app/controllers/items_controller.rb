@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
 
-    if @item.user == current_user && @item.sold_out?
+    if @item.user == current_user && @item.order.present?
       redirect_to root_path
       return
     end
@@ -58,10 +58,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def sold_out?
-    order.present?
   end
 
 end
