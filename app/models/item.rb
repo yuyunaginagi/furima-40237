@@ -22,6 +22,10 @@ class Item < ApplicationRecord
     self.image.attached?
   end
 
+  def sold_out?
+    order.present?
+  end
+
   has_one :order
 
 end
