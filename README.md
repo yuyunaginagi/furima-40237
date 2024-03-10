@@ -39,15 +39,15 @@
 - belongs_to :item
 - has_one :delivery
 
-<!-- deliverysテーブル -->
+<!-- deliveriesテーブル -->
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
 | order            | references | null: false, foreign_key: true |
-| post_code        | string     | null: false                    |
+| postal_code      | string     | null: false                    |
 | prefecture_id    | integer    | null: false                    |
-| municipalities   | string     | null: false                    |
-| street_address   | string     | null: false                    |
-| building_name    | string     |                                |
-| telephone_number | string     | null: false                    |
+| city             | string     | null: false                    |
+| addresses        | string     | null: false                    |
+| building         | string     |                                |
+| phone_number     | string     | null: false                    |
 
 - belongs_to :order
