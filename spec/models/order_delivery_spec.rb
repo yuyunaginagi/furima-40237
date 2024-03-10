@@ -19,6 +19,11 @@ RSpec.describe OrderDelivery, type: :model do
     end
 
     context '内容に問題がある場合' do
+      it "tokenが空では登録できないこと" do
+        @order_delivery.token = nil
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include("Token can't be blank")
+      end
       it 'postal_codeが空だと保存できないこと' do
         @order_delivery.postal_code = ''
         @order_delivery.valid?
@@ -54,6 +59,16 @@ RSpec.describe OrderDelivery, type: :model do
       @order_delivery.valid?
       expect(@order_delivery.errors.full_messages).to include("Phone number is invalid. Input only number")
       end
+      it 'phone_numberが9桁以下では登録できないこと' do
+        @order_delivery.phone_number = '080123456'
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end
+      it 'phone_numberが12桁以上では登録できないこと' do
+        @order_delivery.phone_number = '080123456789'
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end
       it 'userが紐付いていないと保存できないこと' do
       @order_delivery.user_id = nil
       @order_delivery.valid?
@@ -64,6 +79,8 @@ RSpec.describe OrderDelivery, type: :model do
       @order_delivery.valid?
       expect(@order_delivery.errors.full_messages).to include("Item can't be blank")
       end
+      
+# tokenが空では登録できない
     end
   end
 end
