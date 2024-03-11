@@ -8,7 +8,7 @@ function tax (){
     addTaxPrice.innerHTML = `${consumptionTax}`;
 
     const profit = document.getElementById("profit");
-    const salesProfit = Math.floor(inputValue * 0.9);
+    const salesProfit = (inputValue - consumptionTax);
     profit.innerHTML = `${salesProfit}`;
   });
 };
